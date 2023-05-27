@@ -1,0 +1,83 @@
+<div class="text-center">
+  <table>
+    <tr>
+      <td> Duplicate Phone Number File :  </td>
+      <td>
+        <input class="form-control" type="file"
+               (change)="onChange($event)">
+      </td>
+      <td>
+        <button (click)="onUpload()"
+                class="btn btn-success">
+          Upload
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- Shareable short link of  uploaded file -->
+<div class="container text-center jumbotron"
+     *ngIf="shortLink">
+  <h3>{{shortLink}}</h3>
+</div>
+
+<!--Flag variable is used here-->
+<div class="container" *ngIf="loading">
+  <h3>Uploading ...</h3>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<div class="text-center">
+  <table>
+    <tr>
+      <td> Duplicate Emails File :  </td>
+      <td>
+        <input class="form-control" type="file"
+               (change)="onChange($event)">
+      </td>
+      <td>
+        <button (click)="onUploadEmails()"
+                class="btn btn-success">
+          Upload
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="container text-center jumbotron"
+     *ngIf="emailmsg">
+  <h3>{{emailmsg}}</h3>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<div class="text-center">
+  <table>
+    <tr>
+      <td> Duplicate Address File :  </td>
+      <td>
+        <input class="form-control" type="file"
+               (change)="onChange($event)">
+      </td>
+      <td>
+        <button (click)="onUploadAddress()"
+                class="btn btn-success">
+          Upload
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="container text-center jumbotron"
+     *ngIf="emailmsg">
+  <h3>{{addressmsg}}</h3>
+</div>
+
+<ngx-spinner type="ball-spin-clockwise"></ngx-spinner>

@@ -1,0 +1,105 @@
+
+
+<div class="container">
+  <div class="">
+
+   
+      <div class="form-group">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th> <label> Email</label></th>
+              <th>
+                <input type="text" class="form-control" id="email"
+                       [(ngModel)]="contact.value" name="email">
+              </th>
+              <th>
+                <button class="btn btn-success" (click)="searchContact(contact.value)">Submit</button>&nbsp;&nbsp;
+                <button class="btn btn-success" (click)="clear_input(contact.value)">Clear</button>
+              </th>
+              <th> </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+ 
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <!-- <th>Select</th>-->
+          <th>Household Id</th>
+          <th> Name</th>
+          <th> Email</th>
+          <th>Individuals</th>
+          <th>Gift</th>
+          <th>Tags</th>
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of rootList">
+          <!-- <td><input type="checkbox" name="name1"  value="{{u.id}}"/>&nbsp;</td>-->
+          <td><span>{{u.id}}</span></td>
+          <td><span>{{u.name}}</span></td>
+          <td><span>{{u.email}}</span></td>
+          <td>
+            <ng-container>
+              <table class="table table-bordered table-striped">
+                <thead>
+                <th>Indv. Id</th>
+                <th>Name</th>
+                <th></th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cm of u.contactIndividuals">
+                    <td>{{cm.id}}</td>
+                    <td>{{cm.firstName}} {{cm.lastName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+          </td>
+          <td>
+            <ng-container>
+              <table class="table table-bordered table-striped">
+                <thead>
+                <th>amount</th>
+                <th>Gift Date</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let g of u.gift.list">
+                    <td>{{g.amount}}</td>
+                    <td>{{g.giftDate}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+          </td>
+          <td>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>Tag name</th>
+              <th>Total</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let  t of u.tagList.list">
+                  <td>{{t.name}}</td>
+                  <td>{{t.total}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+          </td>
+          <td>
+            <button (click)="updateContact(u.id)" title="Data will be merged in this record. All other records will be archived" class="btn btn-info"> Merge In</button>
+            <!-- <button (click)="archiveContact(u.id)" class="btn btn-danger" style="margin-left: 10px"> Archive</button>-->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ngx-spinner type="ball-spin-clockwise"></ngx-spinner>
+</div>

@@ -1,0 +1,222 @@
+<div class="container">
+  <br>
+  <button (click)="getAllContact()" class="btn btn-info"> Get duplicate records</button>&nbsp;
+  <button (click)="mergeContact()" class="btn btn-info"> Merge Selected Records</button>
+  <br><br>
+  <div id="successId" *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Contacts have been successfully merged</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="hideDiv()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div>
+
+    <label class="label label-default" style="font-style: italic; color: blue; "> Note : <u>Records from below table will be archived</u></label>
+  </div>
+
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Contact Id</th>
+        <th> Name</th>
+        <th> Address</th>
+        <th>Individuals</th>
+        <th>Gift</th>
+        <th>Tags</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of archiveContactList ">
+        <td><input type="checkbox" (change)="onChangeArchive(u,$event.target)" />&nbsp;</td>
+        <td><span>{{u.id}}</span></td>
+        <td><span>{{u.name}}</span></td>
+        <td><span>{{u.address.address1}} {{u.address.address2}} {{u.address.city}} {{u.address.state}} {{u.address.postal}} {{u.address.country}}</span></td>
+        <td>
+          <button type="button" class="btn btn-info"></button>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>Indv. Id</th>
+              <th>Name</th>
+             <!-- <th>Email</th>-->
+              </thead>
+              <tbody>
+                <tr *ngFor="let cm of u.contactIndividuals">
+                  <td>{{cm.id}}</td>
+                  <td>{{cm.firstName}} {{cm.lastName}}</td>
+                 <!-- <td>
+                    <div *ngFor="let c of cm.contactMethods">
+                      <ng-container *ngIf="c.type.includes('Email')">
+                        <p>{{c.value}}</p>
+                      </ng-container>
+                    </div>
+                  </td>-->
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+        <td>
+          <button type="button" class="btn btn-info"></button>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>amount</th>
+              <th>Gift Date</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let g of u.gift.list">
+                  <td>{{g.amount}}</td>
+                  <td>{{g.giftDate}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>Tag name</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let  t of u.tagList.list">
+                  <td>{{t.name}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>Note</th>
+              <th>Type</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let  n of u.notesList">
+                  <td>{{n.note}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="getAllContact()" class="btn btn-info"> Get duplicate records</button>&nbsp;
+  <button (click)="mergeContact()" class="btn btn-info"> Merge Selected Records</button>
+  <br><br>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Contact Id</th>
+        <th> Name</th>
+        <th> Address</th>
+        <th>Individuals</th>
+        <th>Gift</th>
+        <th>Tags</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of rootList | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index ">
+        <td><input title="Data will be merged in this record. All other records will be archived" type="checkbox" id={{u.id}} (change)="onChange(u,$event.target)" />&nbsp;</td>
+        <td><span>{{u.id}}</span></td>
+        <td><span>{{u.name}}</span></td>
+        <td><span>{{u.address.address1}} {{u.address.address2}} {{u.address.city}} {{u.address.state}} {{u.address.postal}} {{u.address.country}}</span></td>
+        <td>
+          <button type="button" class="btn btn-info"></button>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>Indv. Id</th>
+              <th>Name</th>
+            <!--  <th>Email</th>-->
+              </thead>
+              <tbody>
+                <tr *ngFor="let cm of u.contactIndividuals">
+                  <td>{{cm.id}}</td>
+                  <td>{{cm.firstName}} {{cm.lastName}}</td>
+                 <!-- <td>
+                    <div *ngFor="let c of cm.contactMethods">
+                      <ng-container *ngIf="c.type.includes('Email')">
+                        <p>{{c.value}}</p>
+                      </ng-container>
+                    </div>
+                  </td>-->
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+        <td>
+          <button type="button" class="btn btn-info"></button>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>amount</th>
+              <th>Gift Date</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let g of u.gift.list">
+                  <td>{{g.amount}}</td>
+                  <td>{{g.giftDate}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>Tag name</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let  t of u.tagList.list">
+                  <td>{{t.name}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container>
+            <table class="table table-bordered table-striped">
+              <thead>
+              <th>Note</th>
+              <th>Type</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let  n of u.notesList">
+                  <td>{{n.note}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls previousLabel="Prev"
+                         nextLabel="Next"
+                         (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+  <ngx-spinner type="ball-spin-clockwise"></ngx-spinner>
+</div>
