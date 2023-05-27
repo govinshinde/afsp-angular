@@ -99,7 +99,7 @@ export class DuplicateaddressComponent {
   mergeContact() {
     if (this.idArr.length > 0) {
       this.spinner.show();
-      this.httpClient.post<string>(`http://localhost:5005/archiveindvidual/${this.idArr.toString()}`, this.mapArr).subscribe({
+      this.httpClient.post<string>(`https://afsp-java-virtuous-app.herokuapp.com/archiveindvidual/${this.idArr.toString()}`, this.mapArr).subscribe({
         next: data => {
           this.status = data;
         },
