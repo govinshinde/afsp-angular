@@ -10,14 +10,14 @@ import { Root } from './root';
   providedIn: 'root'
 })
 export class ContactService { 
-  private baseurl = "http://localhost:5005/getallcontactindividual/";
-  private baseurlsingle = "http://localhost:5005/getcontactindividual/";
-  private archiveurl = "http://localhost:5005/archive/";
-  private updateContacturl = "http://localhost:5005/update/";
-  private allContacturl = "http://localhost:5005/getallcontactindividuals/";
-  private allContactAddressurl = "http://localhost:5005/getallcontactindividualsaddress/";
-  private allPhoneNumbersurl = "http://localhost:5005/getallphonenumbers/";
-  private allindividualurl = "http://localhost:5005/getallcontactindividuals/";
+  private baseurl = "https://afsp-java-virtuous-app.herokuapp.com/getallcontactindividual/";
+  private baseurlsingle = "https://afsp-java-virtuous-app.herokuapp.com/getcontactindividual/";
+  private archiveurl = "https://afsp-java-virtuous-app.herokuapp.com/archive/";
+  private updateContacturl = "https://afsp-java-virtuous-app.herokuapp.com/update/";
+  private allContacturl = "https://afsp-java-virtuous-app.herokuapp.com/getallcontactindividuals/";
+  private allContactAddressurl = "https://afsp-java-virtuous-app.herokuapp.com/getallcontactindividualsaddress/";
+  private allPhoneNumbersurl = "https://afsp-java-virtuous-app.herokuapp.com/getallphonenumbers/";
+  private allindividualurl = "https://afsp-java-virtuous-app.herokuapp.com/getallcontactindividuals/";
   contactList: Contact[] | undefined;
   constructor(private httpClient: HttpClient) {
   }
