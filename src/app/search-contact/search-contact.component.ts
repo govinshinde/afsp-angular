@@ -16,9 +16,9 @@ export class SearchContactComponent implements OnInit {
   contactList: ContactIndividual[] | undefined;
   status!: string;
   rootList: Root[] | undefined;
-  private baseurl = "http://localhost:5005/getcontactindividual/";
-  private allindividualurl = "http://localhost:5005/getallcontactindividuals/";
-  private archiveindividualurl = "http://localhost:5005/archiveindvidual";
+  private baseurl = "https://afsp-java-virtuous-app.herokuapp.com/getcontactindividual/";
+  private allindividualurl = "https://afsp-java-virtuous-app.herokuapp.com/getallcontactindividuals/";
+  private archiveindividualurl = "https://afsp-java-virtuous-app.herokuapp.com/archiveindvidual";
 
   constructor(private contactService: ContactService, private spinner: NgxSpinnerService, private httpClient: HttpClient) {
   }
@@ -64,7 +64,7 @@ export class SearchContactComponent implements OnInit {
     });
     if (idArr.length > 0) {
       this.spinner.show();
-      this.httpClient.post<string>(`http://localhost:5005/archiveindvidual/${id}`, idArr).subscribe({
+      this.httpClient.post<string>(`https://afsp-java-virtuous-app.herokuapp.com/archiveindvidual/${id}`, idArr).subscribe({
         next: data => {
           this.status = data;
         },
