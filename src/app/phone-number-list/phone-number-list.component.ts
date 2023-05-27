@@ -16,7 +16,7 @@ import { Root } from '../root';
   styleUrls: ['./phone-number-list.component.css']
 })
 export class PhoneNumberListComponent {
-  private allPhoneNumbersurl = "http://localhost:5005/getallphonenumbers/";
+  private allPhoneNumbersurl = "https://afsp-java-virtuous-app.herokuapp.com/getallphonenumbers/";
   contact: Contact = new Contact();
   contactList!: Contact[];
   archiveContactList: Root[] = [];
@@ -97,7 +97,7 @@ export class PhoneNumberListComponent {
   mergeContact() {
     if (this.idArr.length > 0) {
       this.spinner.show();
-      this.httpClient.post<string>(`http://localhost:5005/archiveindvidual/${this.idArr.toString()}`, this.mapArr).subscribe({
+      this.httpClient.post<string>(`https://afsp-java-virtuous-app.herokuapp.com/archiveindvidual/${this.idArr.toString()}`, this.mapArr).subscribe({
         next: data => {
           this.status = data;
         },
