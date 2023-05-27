@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class FileUploadService {
 
-  baseApiUrl = "http://localhost:5005/duplicatephones";
-  emailsApiUrl = "http://localhost:5005/duplicateemails";
-  addressApiUrl = "http://localhost:5005/duplicateaddress";
+  baseApiUrl = "https://afsp-java-virtuous-app.herokuapp.com/duplicatephones";
+  emailsApiUrl = "https://afsp-java-virtuous-app.herokuapp.com/duplicateemails";
+  addressApiUrl = "https://afsp-java-virtuous-app.herokuapp.com/duplicateaddress";
 
   constructor(private http: HttpClient) { }
 
